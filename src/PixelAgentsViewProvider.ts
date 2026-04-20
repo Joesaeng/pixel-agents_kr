@@ -725,7 +725,7 @@ export class PixelAgentsViewProvider implements vscode.WebviewViewProvider {
       } else if (message.type === 'exportLayout') {
         const layout = readLayoutFromFile();
         if (!layout) {
-          vscode.window.showWarningMessage('Pixel Agents: No saved layout to export.');
+          vscode.window.showWarningMessage('Pixel Agents: 내보낼 저장된 레이아웃이 없습니다.');
           return;
         }
         const uri = await vscode.window.showSaveDialog({
@@ -734,14 +734,14 @@ export class PixelAgentsViewProvider implements vscode.WebviewViewProvider {
         });
         if (uri) {
           fs.writeFileSync(uri.fsPath, JSON.stringify(layout, null, 2), 'utf-8');
-          vscode.window.showInformationMessage('Pixel Agents: Layout exported successfully.');
+          vscode.window.showInformationMessage('Pixel Agents: 레이아웃을 성공적으로 내보냈습니다.');
         }
       } else if (message.type === 'addExternalAssetDirectory') {
         const uris = await vscode.window.showOpenDialog({
           canSelectFolders: true,
           canSelectFiles: false,
           canSelectMany: false,
-          openLabel: 'Select Asset Directory',
+          openLabel: '에셋 폴더 선택',
         });
         if (!uris || uris.length === 0) return;
         const newPath = uris[0].fsPath;
@@ -778,15 +778,15 @@ export class PixelAgentsViewProvider implements vscode.WebviewViewProvider {
           const raw = fs.readFileSync(uris[0].fsPath, 'utf-8');
           const imported = JSON.parse(raw) as Record<string, unknown>;
           if (imported.version !== 1 || !Array.isArray(imported.tiles)) {
-            vscode.window.showErrorMessage('Pixel Agents: Invalid layout file.');
+            vscode.window.showErrorMessage('Pixel Agents: 유효하지 않은 레이아웃 파일입니다.');
             return;
           }
           this.layoutWatcher?.markOwnWrite();
           writeLayoutToFile(imported);
           this.webview?.postMessage({ type: 'layoutLoaded', layout: imported });
-          vscode.window.showInformationMessage('Pixel Agents: Layout imported successfully.');
+          vscode.window.showInformationMessage('Pixel Agents: 레이아웃을 성공적으로 가져왔습니다.');
         } catch {
-          vscode.window.showErrorMessage('Pixel Agents: Failed to read or parse layout file.');
+          vscode.window.showErrorMessage('Pixel Agents: 레이아웃 파일을 읽거나 파싱하지 못했습니다.');
         }
       }
     });
@@ -836,12 +836,12 @@ export class PixelAgentsViewProvider implements vscode.WebviewViewProvider {
   exportDefaultLayout(): void {
     const layout = readLayoutFromFile();
     if (!layout) {
-      vscode.window.showWarningMessage('Pixel Agents: No saved layout found.');
+      vscode.window.showWarningMessage('Pixel Agents: 저장된 레이아웃을 찾을 수 없습니다.');
       return;
     }
     const workspaceRoot = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
     if (!workspaceRoot) {
-      vscode.window.showErrorMessage('Pixel Agents: No workspace folder found.');
+      vscode.window.showErrorMessage('Pixel Agents: 워크스페이스 폴더를 찾을 수 없습니다.');
       return;
     }
     const assetsDir = path.join(workspaceRoot, 'webview-ui', 'public', 'assets');
@@ -863,7 +863,7 @@ export class PixelAgentsViewProvider implements vscode.WebviewViewProvider {
     const json = JSON.stringify(layout, null, 2);
     fs.writeFileSync(targetPath, json, 'utf-8');
     vscode.window.showInformationMessage(
-      `Pixel Agents: Default layout exported as revision ${nextRevision} to ${targetPath}`,
+      `Pixel Agents: 기본 레이아웃을 리비전 ${nextRevision}(으)로 ${targetPath} 경로에 내보냈습니다.`,
     );
   }
 

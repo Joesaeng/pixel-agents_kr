@@ -46,7 +46,7 @@ function getActivityText(
     // Find the latest non-done tool
     const activeTool = [...tools].reverse().find((t) => !t.done);
     if (activeTool) {
-      if (activeTool.permissionWait) return 'Needs approval';
+      if (activeTool.permissionWait) return '승인 필요';
       return activeTool.status;
     }
     // All tools done but agent still active (mid-turn) — keep showing last tool status
@@ -56,7 +56,7 @@ function getActivityText(
     }
   }
 
-  return 'Idle';
+  return '대기 중';
 }
 
 function getFuelColor(ratio: number): string {
@@ -130,10 +130,10 @@ export function ToolOverlay({
         let activityText: string;
         if (isSub) {
           if (subHasPermission) {
-            activityText = 'Needs approval';
+            activityText = '승인 필요';
           } else {
             const sub = subagentCharacters.find((s) => s.id === id);
-            activityText = sub ? sub.label : 'Subtask';
+            activityText = sub ? sub.label : '서브태스크';
           }
         } else {
           activityText = getActivityText(id, agentTools, ch.isActive);
@@ -214,7 +214,7 @@ export function ToolOverlay({
                     e.stopPropagation();
                     onCloseAgent(id);
                   }}
-                  title="Close agent"
+                  title="에이전트 닫기"
                   className="ml-2 shrink-0 leading-none"
                 >
                   ×
@@ -229,7 +229,7 @@ export function ToolOverlay({
                   background: FUEL_GAUGE_BG,
                   marginTop: 2,
                 }}
-                title={`${Math.round(tokenRatio * 100)}% context used (${(totalTokens / 1000).toFixed(0)}k tokens)`}
+                title={`컨텍스트 ${Math.round(tokenRatio * 100)}% 사용 (${(totalTokens / 1000).toFixed(0)}k 토큰)`}
               >
                 <div
                   style={{

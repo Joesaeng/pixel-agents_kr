@@ -83,7 +83,7 @@ export function ColorPicker({ value, onChange, colorize, showColorizeToggle }: C
             onChange={(e) => onChange({ ...value, colorize: e.target.checked || undefined })}
             className="accent-accent"
           />
-          Colorize
+          색상 적용
         </label>
       )}
     </div>

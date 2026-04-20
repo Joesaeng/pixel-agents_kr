@@ -1,7 +1,7 @@
 {
   "name": "pixel-agents",
-  "displayName": "Pixel Agents",
-  "description": "Pixel art office where your Claude Code agents come to life as animated characters",
+  "displayName": "Pixel Agents (한국어)",
+  "description": "Claude Code 에이전트를 애니메이션 캐릭터로 살아 움직이게 하는 픽셀 아트 오피스",
   "version": "1.3.0",
   "publisher": "pablodelucca",
   "repository": {
@@ -22,11 +22,11 @@
     "commands": [
       {
         "command": "pixel-agents.showPanel",
-        "title": "Pixel Agents: Show Panel"
+        "title": "Pixel Agents: 패널 열기"
       },
       {
         "command": "pixel-agents.exportDefaultLayout",
-        "title": "Pixel Agents: Export Layout as Default"
+        "title": "Pixel Agents: 기본 레이아웃으로 내보내기"
       }
     ],
     "viewsContainers": {

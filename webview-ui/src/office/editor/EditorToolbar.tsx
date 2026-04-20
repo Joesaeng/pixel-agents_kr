@@ -114,33 +114,33 @@ export function EditorToolbar({
           variant={isFurnitureActive ? 'active' : 'default'}
           size="md"
           onClick={() => onToolChange(EditTool.FURNITURE_PLACE)}
-          title="Place furniture"
+          title="가구 배치"
         >
-          Furniture
+          가구
         </Button>
         <Button
           variant={isFloorActive ? 'active' : 'default'}
           size="md"
           onClick={() => onToolChange(EditTool.TILE_PAINT)}
-          title="Paint floor tiles"
+          title="바닥 타일 칠하기"
         >
-          Floor
+          바닥
         </Button>
         <Button
           variant={isWallActive ? 'active' : 'default'}
           size="md"
           onClick={() => onToolChange(EditTool.WALL_PAINT)}
-          title="Paint walls (click to toggle)"
+          title="벽 칠하기 (클릭하여 전환)"
         >
-          Wall
+          벽
         </Button>
         <Button
           variant={isEraseActive ? 'active' : 'default'}
           size="md"
           onClick={() => onToolChange(EditTool.ERASE)}
-          title="Erase tiles to void"
+          title="타일을 빈 공간으로 지우기"
         >
-          Erase
+          지우기
         </Button>
       </div>
 
@@ -153,17 +153,17 @@ export function EditorToolbar({
               variant={showColor ? 'active' : 'default'}
               size="sm"
               onClick={() => setShowColor((v) => !v)}
-              title="Adjust floor color"
+              title="바닥 색상 조정"
             >
-              Color
+              색상
             </Button>
             <Button
               variant={activeTool === EditTool.EYEDROPPER ? 'active' : 'ghost'}
               size="sm"
               onClick={() => onToolChange(EditTool.EYEDROPPER)}
-              title="Pick floor pattern + color from existing tile"
+              title="기존 타일에서 바닥 패턴 + 색상 추출"
             >
-              Pick
+              추출
             </Button>
           </div>
 
@@ -179,7 +179,7 @@ export function EditorToolbar({
                 height={32}
                 selected={selectedTileType === patIdx}
                 onClick={() => onTileTypeChange(patIdx as TileTypeVal)}
-                title={`Floor ${patIdx}`}
+                title={`바닥 ${patIdx}`}
                 deps={[patIdx, floorColor]}
                 draw={(ctx, w, h) => {
                   if (!hasFloorSprites()) {
@@ -205,9 +205,9 @@ export function EditorToolbar({
               variant={showWallColor ? 'active' : 'default'}
               size="sm"
               onClick={() => setShowWallColor((v) => !v)}
-              title="Adjust wall color"
+              title="벽 색상 조정"
             >
-              Color
+              색상
             </Button>
           </div>
 
@@ -224,7 +224,7 @@ export function EditorToolbar({
                   height={64}
                   selected={selectedWallSet === i}
                   onClick={() => onWallSetChange(i)}
-                  title={`Wall ${i + 1}`}
+                  title={`벽 ${i + 1}`}
                   deps={[i, wallColor]}
                   draw={(ctx, w, h) => {
                     const sprite = getWallSetPreviewSprite(i);
@@ -267,9 +267,9 @@ export function EditorToolbar({
               variant={activeTool === EditTool.FURNITURE_PICK ? 'active' : 'ghost'}
               size="sm"
               onClick={() => onToolChange(EditTool.FURNITURE_PICK)}
-              title="Pick furniture type from placed item"
+              title="배치된 가구에서 종류 추출"
             >
-              Pick
+              추출
             </Button>
           </div>
           {/* Furniture items — single-row horizontal carousel at 2x */}
@@ -304,18 +304,18 @@ export function EditorToolbar({
               variant={showFurnitureColor ? 'active' : 'default'}
               size="sm"
               onClick={() => setShowFurnitureColor((v) => !v)}
-              title="Adjust selected furniture color"
+              title="선택된 가구 색상 조정"
             >
-              Color
+              색상
             </Button>
             {selectedFurnitureColor && (
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => onSelectedFurnitureColorChange(null)}
-                title="Remove color (restore original)"
+                title="색상 제거 (원본으로 복원)"
               >
-                Clear
+                초기화
               </Button>
             )}
           </div>
